@@ -1,0 +1,337 @@
+/* Basic reset and fonts */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f6fa;
+    color: #333;
+}
+
+.mainContainer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero {
+    display: flex;
+    background-color: rgba(158, 158, 167, 0.18);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 90%;
+    flex-wrap: wrap;
+    gap: 20px;
+    animation: fadein 1s ease forwards;
+}
+
+.heroContainer1 {
+    flex: 1 1 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: scaleIn 2s ease forwards;
+}
+
+.heroContainer1>img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.heroContainer1>img:hover {
+    transform: scale(1.05);
+}
+
+.heroContainer2 {
+    flex: 2 1 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+#mainHeading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    min-height: 2.5em;
+    animation: opacity 5s ease-in-out forwards;
+}
+
+.subheading {
+    font-size: 1rem;
+    color: #555;
+    animation: opacity 5s ease-in-out forwards;
+}
+
+.ctaButton {
+    padding: 10px 20px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.ctaButton:hover {
+    background-color: #2980b9;
+}
+
+/* Animations */
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Form container background */
+.formContainer {
+    height: 100vh;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Image at top of form */
+.formContainer img {
+    /* width: 100px; */
+    /* height: auto; */
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease forwards;
+    margin: 10px;
+}
+
+/* Form card styling */
+.formContainer form {
+    background: linear-gradient(135deg, #ecf0f1, #d0d3d4);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: slideIn 1s ease forwards;
+}
+
+/* Form heading */
+.formContainer h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Section inside form */
+.formContainer form>div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Range label */
+.formContainer p {
+    margin: 0;
+    font-size: 1rem;
+    color: #34495e;
+}
+
+/* RANGE SLIDER CUSTOM STYLE */
+.formContainer input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #d0d7de;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.formContainer input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #1abc9c;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s;
+}
+
+.formContainer input[type="range"]::-webkit-slider-thumb:hover {
+    background: #16a085;
+}
+
+/* Value display */
+#rangeValue {
+    font-weight: bold;
+    color: #1abc9c;
+}
+
+/* Checkbox group container */
+.formContainer form>div>div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #dfe6e9;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.formContainer form>div>div:hover {
+    background-color: #b2bec3;
+    transform: scale(1.02);
+}
+
+/* Stylish CHECKBOXES */
+.formContainer input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #1abc9c;
+    border-radius: 4px;
+    background-color: #fff;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.formContainer input[type="checkbox"]:checked {
+    background-color: #1abc9c;
+    border-color: #16a085;
+}
+
+.formContainer input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: #fff;
+    position: absolute;
+    font-size: 14px;
+    left: 2px;
+    top: -2px;
+}
+
+/* Text input styling */
+#generateText {
+    height: 35px;
+    border-radius: 7px;
+    border: 1px solid #1abc9c;
+    padding: 5px 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#generateText:focus {
+    border-color: #16a085;
+}
+
+/* Button styling */
+.ctaButton {
+    padding: 12px 20px;
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.ctaButton:hover {
+    background-color: #16a085;
+    transform: scale(1.03);
+}
+
+.generatedtext {
+    position: relative;
+    display: inline-block;
+}
+
+.generatedtext input {
+    padding-right: 35px;
+    /* space for the icon on right */
+    box-sizing: border-box;
+}
+
+.copyimg {
+    position: absolute;
+    top: 30%;
+    right: 10px;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    animation: fadeIn ease forwards;
+
+}
+
+
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

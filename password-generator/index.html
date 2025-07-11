@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="mainContainer">
+        <div class="hero">
+            <div class="heroContainer1">
+                <img src="https://www.lastpass.com/-/media/0351d8d46a5b495e9efd0e1a46835f49.svg?la=en&hash=58FACB74B7A929CD1B741EEB169D5E72"
+                    alt="Logo">
+            </div>
+            <div class="heroContainer2">
+                <h1 id="mainHeading"></h1>
+                <p class="subheading">Create a secure password to protect your account.</p>
+                <button onclick="handleClick()" class="ctaButton">Click here</button>
+            </div>
+        </div>
+    </div>
+    <div class="formContainer">
+        <img src="./Password-Generator-5.svg" alt="">
+        <form action="">
+            <h1 id="formHeading">Genrate your password</h1>
+            <div>
+                <p>Enter your desire range</p>
+                <input onchange="showValue()" type="range" id="myRange" min="0" max="50" value="25">
+                <p>Value: <span id="rangeValue">25</span></p>
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" id="uppercase">
+                    <p>ABC ? </p>
+                </div>
+
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" id="lowercase">
+                    <p>abc ?</p>
+                </div>
+
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" id="number">
+                    <p>1234 ?</p>
+                </div>
+
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" id="special">
+                    <p>$%*! ?</p>
+                </div>
+
+            </div>
+            <div class="generatedtext">
+                <input id="generateText" type="text">
+                <img id="copyimage" onclick="copyText()" class="copyimg" src="https://cdn-icons-png.flaticon.com/512/178/178921.png" alt="">
+
+
+            </div>
+            <div>
+                <button type="button" onclick="generatepassword()" class="ctaButton">Generate password</button>
+
+
+            </div>
+
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
