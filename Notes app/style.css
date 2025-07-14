@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Updated background */
+}
+
+.container {
+    background-color: #f39c12; /* Updated container color */
+    margin-top: 30px;
+    width: 70%;
+    height: 80vh;
+    border-radius: 15px;
+    transition: 0.3s ease-in-out;
+    box-shadow: -5px 7px 16px 3px;
+    
+    /* Enable scrolling when content overflows */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Keeps the header visible */
+}
+
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto; /* Enables vertical scrolling */
+    height: 100%; /* Allows it to expand within .container */
+    padding: 10px;
+}
+
+/* Optional: Custom scrollbar for better look */
+.main::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.container:hover {
+    transform: scale(1.03);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.header span {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+
+}
+
+.header img {
+    height: 55px;
+    width: 55px;
+}
+.btn{
+    width: 100px;
+    height: 35px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background-color: #2c3e50;
+    padding: 10px;
+    margin-left: 20px;
+    text-align: center;
+    color: white;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+   
+}
+.btn:hover{
+    transform: scale(1.03);
+}
+
+.createNotes {
+    animation: slideup 0.5s ease-out forwards;
+    width: 40%;
+    height: 130px;
+    margin-left: 55px;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    margin-top: 10px;
+    position: relative;
+    /* margin: auto; */
+
+}
+@keyframes slideup{
+    from{
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.createNotes textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+   
+}
+.save{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+.dlt{
+    position: absolute;
+    right: 32px;
+    bottom: 10px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
