@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="parentContainer">
+      <!-- Left container -->
+      <div class="container1">
+        <h1 class="Welcome-heading animate-slide">Hi! there</h1>
+        <button onclick="showModel()" class="add-task-btn">
+          Add task
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/8558/8558371.png"
+            alt=""
+          />
+        </button>
+        <!-- task model -->
+        <div id="model" class="model"></div>
+
+        <hr />
+
+        <h2 class="Recently-added-task-heading animate-slide delay-5">
+          Recently added task
+        </h2>
+        <!-- tasks -->
+        <div class="task-holder" id="task-holder"></div>
+      </div>
+
+      <!-- Right container -->
+      <div class="container2">
+        <div class="statistic-parent">
+          <div class="statistic-row1">
+            <div class="col animate-fade delay-1">
+              <h2>Total task</h2>
+              <p id="Total">0</p>
+            </div>
+            <div class="col animate-fade delay-2">
+              <h2>Complete task</h2>
+              <p id="complete">0</p>
+            </div>
+          </div>
+
+          <div class="statistic-row2">
+            <div class="col animate-fade delay-3">
+              <h2>Pending task</h2>
+              <p id="pending">0</p>
+            </div>
+            <div class="col animate-fade delay-4">
+              <h2>Completion rate</h2>
+              <p id="completion-rate">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
