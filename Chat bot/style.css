@@ -1,0 +1,296 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: lora;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(-45deg, #0d0d0d, #161616, #2b2b2b, #1a1a1a);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.chatContainer{
+    height: 90vh;
+    width: 80vw;
+    background-color: black;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: -6px 4px 10px 4px #2d2d2d;
+}.chatHandler {
+    height: 90%;
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin; /* Firefox ke liye */
+    scrollbar-color: #555 black; /* Scrollbar aur track color */
+}
+
+/* WebKit Browsers (Chrome, Edge, Safari) */
+.chatHandler::-webkit-scrollbar {
+    width: 2px;
+}
+
+/* Remove the scrollbar arrows */
+.chatHandler::-webkit-scrollbar-button {
+    display: none;
+}
+
+.chatHandler::-webkit-scrollbar-track {
+    background: black; /* Scroll bar ka background */
+    border-radius: 10px;
+}
+
+.chatHandler::-webkit-scrollbar-thumb {
+    background: #222222; /* Scroll handle ka color */
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.chatHandler::-webkit-scrollbar-thumb:hover {
+    background: #777; /* Hover effect */
+}
+
+
+.inputbar{
+    height: 10%;
+    width: 100%;
+    background-color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+} 
+.inputbar button{
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    background-color: #0d0d0d;
+}
+.inputbar img{
+ height: 30px;
+ width: 30px;
+ padding: 10px;
+ border-radius: 50%;
+ transition: all 0.3s ease-in-out;
+ cursor: pointer;
+}
+.inputbar input:hover{
+    background-color: #161616;
+    
+}
+.inputbar img:hover{
+    background-color: #161616;
+    
+}
+.inputbar input{
+    width: 50%;
+    border-radius: 30px;
+    height: 60px;
+    padding: 0px 20px;
+    font-size: 15px;
+    border: none;
+    background-color: #161616b8;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    /* background-color: aliceblue; */
+}
+.chat img {
+    height: 50px;
+    width: 50px;
+    /* filter: drop-shadow(5px 5px 10px rgba(255, 255, 255, 0.8)); */
+}
+
+.chat div{
+
+    padding: 10px 20px;
+    margin-top: 20px;
+    
+}
+.ai-chat div{
+    max-width: 50%;
+    background-color: rgb(125 127 122 / 27%);
+    border-radius: 0px 10px 10px 10px;
+}
+.chat{
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+  
+}
+.user-chat div{
+    border-radius: 10px 0px 10px 10px;
+    max-width: 50%;
+    background-color: rgb(189 251 84 / 27%);
+}
+.user-chat{
+    display: flex;
+    justify-content: right;
+   
+}
+/* .chat{
+    position: absolute;
+} */
+#chooseimg{
+    position: relative;
+    right: 36px;
+    bottom: 0;
+    height: 100px;
+    width: 150px;
+    padding-bottom: 28px;
+    border-radius: 15px;
+}
+@media screen and (max-width: 1024px) {
+    .chatContainer {
+        width: 90vw;
+        height: 85vh;
+    }
+    
+    .inputbar input {
+        width: 60%;
+        height: 50px;
+        font-size: 14px;
+    }
+    
+    .chat div {
+        font-size: 12px;
+    }
+
+    .chat img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .chatContainer {
+        width: 95vw;
+        height: 80vh;
+    }
+
+    .inputbar {
+        gap: 3px;
+    }
+
+    .inputbar input {
+        width: 70%;
+        height: 45px;
+        font-size: 13px;
+    }
+
+    .inputbar img {
+        height: 25px;
+        width: 25px;
+        padding: 8px;
+    }
+
+    .chat img {
+        height: 35px;
+        width: 35px;
+    }
+
+    .chat div {
+        font-size: 11px;
+    }
+
+    .ai-chat div,
+    .user-chat div {
+        max-width: 70%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        height: 100vh;
+        padding: 10px;
+    }
+
+    .chatContainer {
+        width: 100%;
+        height: 75vh;
+        padding: 10px;
+    }
+
+    .chatHandler {
+        height: 85%;
+    }
+
+    .inputbar {
+        height: 15%;
+        gap: 2px;
+    }
+
+    .inputbar input {
+        width: 75%;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .inputbar img {
+        height: 20px;
+        width: 20px;
+        padding: 6px;
+    }
+
+    .chat img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .chat div {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .ai-chat div,
+    .user-chat div {
+        max-width: 80%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .chatContainer {
+        height: 70vh;
+    }
+
+    .inputbar input {
+        width: 80%;
+        height: 35px;
+        font-size: 11px;
+    }
+
+    .inputbar img {
+        height: 18px;
+        width: 18px;
+        padding: 5px;
+    }
+
+    .chat div {
+        font-size: 9px;
+        padding: 6px;
+    }
+
+    .ai-chat div,
+    .user-chat div {
+        max-width: 90%;
+    }
+}
