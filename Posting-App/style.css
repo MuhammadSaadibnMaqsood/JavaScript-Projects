@@ -1,12 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Outfit:wght@100..900&family=Poppins&family=Tektur:wght@400..900&display=swap");
 /* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #f4f7fc;
   color: #333;
 }
@@ -27,7 +29,7 @@ body {
 
 .hero > img {
   border-radius: 12px;
-  height: 170px;
+  height: 370px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
@@ -40,6 +42,7 @@ body {
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
+  font-family: "Tektur", sans-serif;
 }
 
 .hero p {
@@ -82,6 +85,9 @@ body {
   max-width: 400px;
   animation: fadeIn 0.5s ease-in-out;
 }
+.container h1 {
+  font-family: "Tektur", sans-serif;
+}
 
 /* Input Fields */
 .input-div {
@@ -89,6 +95,7 @@ body {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+  padding-top: 10px;
 }
 
 .input-div input,
@@ -167,12 +174,16 @@ body {
   max-width: 600px;
   background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .all-post h2 {
   margin-bottom: 20px;
   text-align: center;
+}
+#all-posts {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .single-post {
@@ -190,9 +201,16 @@ body {
   justify-content: space-between;
 }
 
+.single-post {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
 .single-post .post-text {
   font-size: 0.95rem;
   margin-bottom: 10px;
+  white-space: pre-wrap; /* ensures line breaks and long words wrap */
 }
 
 .single-post img {
@@ -207,9 +225,208 @@ body {
   from {
     opacity: 0;
     transform: translateY(20px);
-  } 
+  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+/* Fix Recent Posts Heading */
+h2 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #333;
+  font-family: "Tektur", sans-serif;
+}
+#edit-post-input {
+  width: 300px;
+}
+.delete-btn {
+  border: none;
+}
+.delete-btn img {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.edit-btn {
+  border: none;
+}
+.edit-btn img {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.hidden {
+  display: none;
+}
+/* Add hover effect on each post */
+.all-post:hover {
+  transform: scale(1.01);
+  transition: transform 0.3s ease;
+}
+
+/* Edit and Comment Button Enhancement */
+.single-post button {
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+.save-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+.comment-input button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.comment-input button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Tooltip animation for delete */
+.delete-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.delete-btn:hover .hidden {
+  display: block;
+  position: absolute;
+  top: -25px;
+  left: -10px;
+  background: #ff4d4f;
+  color: white;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+  animation: fadeIn 0.3s ease-in-out;
+}
+/* Tooltip animation for edit */
+.edit-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edit-btn:hover .hidden {
+  display: block;
+  position: absolute;
+  top: -25px;
+  left: 3px;
+  background: #ff4d4f;
+  color: white;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Edit textarea animation */
+#edit-post-input {
+  animation: slideFadeIn 0.3s ease-in-out;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* Comment section style */
+.comment-output {
+  margin-top: 10px;
+  padding: 10px;
+  border-left: 3px solid #007bff;
+  background-color: #f0f4ff;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.comment-output p {
+  margin: 5px 0;
+  padding-left: 10px;
+  position: relative;
+}
+
+.comment-output p::before {
+  content: "💬";
+  position: absolute;
+  left: -20px;
+}
+
+/* Add button with neumorphism */
+#post-btn {
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+
+#post-btn:hover {
+  box-shadow: 0 6px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Slide fade-in animation */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.comment-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.comment-btn:hover {
+  background-color: #1d4ed8; /* blue-700 */
+  transform: translateY(-1px);
+}
+
+.comment-btn:active {
+  background-color: #1e40af; /* blue-800 */
+  transform: translateY(0);
+}
+.divider{
+  height: 4px;
+  width: 100%;
+  background: gray;
+  margin-bottom: 10px;
+}
+
