@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Login & Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    form {
+      display: none;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 4px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.2s;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #74ebd5;
+      box-shadow: 0 0 0 2px rgba(116, 235, 213, 0.3);
+    }
+
+    .error-msg {
+      color: red;
+      font-size: 12px;
+      margin-bottom: 10px;
+      display: block;
+      height: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4A90E2;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #357ABD;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .toggle-link a {
+      color: #4A90E2;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .toggle-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Login Form -->
+    <form id="login-form" class="active">
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email" />
+      <small class="error-msg" id="login-email-error"></small>
+
+      <input type="password" id="login-password" placeholder="Password" />
+      <small class="error-msg" id="login-password-error"></small>
+
+      <button type="submit">Login</button>
+      <div class="toggle-link">
+        Don't have an account? <a onclick="showSignUp()">Sign up here</a>
+      </div>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signup-form">
+      <h2>Sign Up</h2>
+      <input type="text" id="signup-name" placeholder="Full Name" />
+      <small class="error-msg" id="signup-name-error"></small>
+
+      <input type="email" id="signup-email" placeholder="Email" />
+      <small class="error-msg" id="signup-email-error"></small>
+
+      <input type="password" id="signup-password" placeholder="Password" />
+      <small class="error-msg" id="signup-password-error"></small>
+
+      <input type="password" id="signup-confirm-password" placeholder="Confirm Password" />
+      <small class="error-msg" id="signup-confirm-password-error"></small>
+
+      <button type="submit">Register</button>
+      <div class="toggle-link">
+        Already have an account? <a onclick="showLogin()">Login here</a>
+      </div>
+    </form>
+
+  </div>
+
+  <script>
+    function showSignUp() {
+      document.getElementById("signup-form").classList.add("active");
+      document.getElementById("login-form").classList.remove("active");
+      clearErrors();
+    }
+
+    function showLogin() {
+      document.getElementById("login-form").classList.add("active");
+      document.getElementById("signup-form").classList.remove("active");
+      clearErrors();
+    }
+
+    function clearErrors() {
+      const errors = document.querySelectorAll(".error-msg");
+      errors.forEach(err => err.textContent = "");
+    }
+
+    // Helper: Email validator
+    function validateEmail(email) {
+      const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      return pattern.test(email);
+    }
+
+    // Sign Up Validation
+    document.getElementById("signup-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      clearErrors();
+
+      let valid = true;
+
+      const name = document.getElementById("signup-name").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+      const password = document.getElementById("signup-password").value;
+      const confirmPassword = document.getElementById("signup-confirm-password").value;
+
+      if (!name) {
+        document.getElementById("signup-name-error").textContent = "Name is required.";
+        valid = false;
+      }
+
+      if (!email) {
+        document.getElementById("signup-email-error").textContent = "Email is required.";
+        valid = false;
+      } else if (!validateEmail(email)) {
+        document.getElementById("signup-email-error").textContent = "Invalid email format.";
+        valid = false;
+      }
+
+      if (!password) {
+        document.getElementById("signup-password-error").textContent = "Password is required.";
+        valid = false;
+      } else if (password.length < 6) {
+        document.getElementById("signup-password-error").textContent = "At least 6 characters.";
+        valid = false;
+      }
+
+      if (!confirmPassword) {
+        document.getElementById("signup-confirm-password-error").textContent = "Confirm your password.";
+        valid = false;
+      } else if (password !== confirmPassword) {
+        document.getElementById("signup-confirm-password-error").textContent = "Passwords do not match.";
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const user = { name, email, password };
+      localStorage.setItem("user", JSON.stringify(user));
+
+      document.getElementById("signup-form").reset();
+      showLogin();
+    });
+
+    // Login Validation
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      clearErrors();
+
+      let valid = true;
+
+      const email = document.getElementById("login-email").value.trim();
+      const password = document.getElementById("login-password").value;
+
+      if (!email) {
+        document.getElementById("login-email-error").textContent = "Email is required.";
+        valid = false;
+      } else if (!validateEmail(email)) {
+        document.getElementById("login-email-error").textContent = "Invalid email format.";
+        valid = false;
+      }
+
+      if (!password) {
+        document.getElementById("login-password-error").textContent = "Password is required.";
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+
+      if (!storedUser) {
+        document.getElementById("login-email-error").textContent = "No account found.";
+        return;
+      }
+
+      if (storedUser.email === email && storedUser.password === password) {
+        document.getElementById("login-form").reset();
+        alert("Login successful!"); 
+      } else {
+        document.getElementById("login-password-error").textContent = "Incorrect email or password.";
+      }
+    });
+  </script>
+</body>
+</html>
