@@ -7,9 +7,13 @@ async function weather(city) {
     let data = await response.json();
 
     if (!data.name) {
-        console.log('condition true');
-        return
-        
+      console.log("condition true");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "City does't exist or may be you miss spell it!",
+      });
+      return;
     }
 
     document.querySelector(".city").innerHTML = data.name;
@@ -43,6 +47,17 @@ weather("karachi");
 // Get button and input field
 const input = document.querySelector(".input");
 const btn = document.querySelector(".search");
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const city = input.value.trim();
+    if (city) {
+      weather(city);
+    } else {
+      alert("Please enter a city name.");
+    }
+  }
+});
 
 // Add event listener
 btn.addEventListener("click", () => {
