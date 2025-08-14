@@ -6,9 +6,7 @@
   <title>Modern Login & Sign Up</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -29,13 +27,8 @@
       max-width: 400px;
     }
 
-    form {
-      display: none;
-    }
-
-    form.active {
-      display: block;
-    }
+    form { display: none; }
+    form.active { display: block; }
 
     h2 {
       text-align: center;
@@ -81,9 +74,7 @@
       margin-top: 10px;
     }
 
-    button:hover {
-      background-color: #357ABD;
-    }
+    button:hover { background-color: #357ABD; }
 
     .toggle-link {
       text-align: center;
@@ -98,9 +89,7 @@
       text-decoration: none;
     }
 
-    .toggle-link a:hover {
-      text-decoration: underline;
-    }
+    .toggle-link a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -168,6 +157,13 @@
       return pattern.test(email);
     }
 
+    // Helper: Password validator
+    function validatePassword(password) {
+      // Min 6 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char
+      const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+      return pattern.test(password);
+    }
+
     // Sign Up Validation
     document.getElementById("signup-form").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -196,8 +192,9 @@
       if (!password) {
         document.getElementById("signup-password-error").textContent = "Password is required.";
         valid = false;
-      } else if (password.length < 6) {
-        document.getElementById("signup-password-error").textContent = "At least 6 characters.";
+      } else if (!validatePassword(password)) {
+        document.getElementById("signup-password-error").textContent =
+          "Password must have 6+ chars, 1 uppercase, 1 lowercase, 1 number, 1 special char.";
         valid = false;
       }
 
@@ -252,7 +249,7 @@
 
       if (storedUser.email === email && storedUser.password === password) {
         document.getElementById("login-form").reset();
-        alert("Login successful!"); 
+        alert("Login successful!");
       } else {
         document.getElementById("login-password-error").textContent = "Incorrect email or password.";
       }
