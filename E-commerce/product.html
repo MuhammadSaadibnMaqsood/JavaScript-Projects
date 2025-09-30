@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      .maincontainer {
+        max-width: 1200px;
+        margin: 40px auto;
+        background: #fff;
+        display: flex;
+        gap: 40px;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .product-image {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 50vh;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .product-image img:hover {
+        transform: scale(1.03);
+      }
+
+      .product-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+      }
+
+      .product-info h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5rem;
+        background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #e63946;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .price::before {
+        content: "₹";
+        font-size: 1.5rem;
+      }
+
+      .description {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 30px;
+        line-height: 1.6;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        border-left: 4px solid #667eea;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 15px 25px;
+        background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        text-align: center;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid #667eea;
+        color: #667eea;
+        box-shadow: none;
+      }
+
+      .btn-outline:hover {
+        background: rgba(102, 126, 234, 0.1);
+      }
+
+      .product-meta {
+        display: flex;
+        gap: 20px;
+        margin: 20px 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #666;
+      }
+
+      .meta-item i {
+        color: #667eea;
+      }
+
+      .rating {
+        display: flex;
+        gap: 5px;
+        margin: 10px 0;
+        color: #ffc107;
+      }
+
+      @media (max-width: 900px) {
+        .maincontainer {
+          flex-direction: column;
+          gap: 30px;
+        }
+        
+        .product-image img {
+          height: 40vh;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .maincontainer {
+          margin: 20px auto;
+          padding: 20px;
+        }
+        
+        .product-info h1 {
+          font-size: 2rem;
+        }
+        
+        .action-buttons {
+          flex-direction: column;
+        }
+        
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="maincontainer" id="product-detail"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      const products = [
+        {
+          id: "1",
+          productName: "Bag",
+          img: "https://images.unsplash.com/photo-1682745230951-8a5aa9a474a0?fm=jpg&q=60&w=3000",
+          price: 3500,
+          description: "Stylish leather bag perfect for everyday use.",
+        },
+        {
+          id: "2",
+          productName: "Shoes",
+          img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?fm=jpg&q=60&w=3000",
+          price: 4200,
+          description: "Comfortable running shoes with premium quality.",
+        },
+        {
+          id: "3",
+          productName: "Watch",
+          img: "https://plus.unsplash.com/premium_photo-1681504446264-708b83f4ea12",
+          price: 8000,
+          description: "Classic wrist watch with modern design.",
+        },
+        {
+          id: "6",
+          productName: "Men Shirt",
+          img: "https://plus.unsplash.com/premium_photo-1683140431958-31505d0fd1ff",
+          price: 2500,
+          description: "Casual men's shirt made with soft cotton fabric.",
+        },
+        {
+          id: "4",
+          productName: "Fashion",
+          img: "https://images.unsplash.com/photo-1601568494843-772eb04aca5d",
+          price: 6000,
+          description: "Trendy fashion wear for all occasions.",
+        },
+        {
+          id: "5",
+          productName: "Clothes",
+          img: "https://images.unsplash.com/photo-1585687501004-615dfdfde7f1",
+          price: 1800,
+          description: "Lightweight and comfortable casual clothes.",
+        },
+      ];
+
+      const params = new URLSearchParams(window.location.search);
+     
+      
+      const id = params.get("id");
+
+      const product = products.find((p) => p.id === id);
+
+      const container = document.getElementById("product-detail");
+     
+
+      if (product) {
+        container.innerHTML = `
+          <div class="product-image">
+            <img src="${product.img}" alt="${product.productName}">
+          </div>
+          <div class="product-info">
+            <h1>${product.productName}</h1>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span style="color: #777; margin-left: 8px;">(4.5)</span>
+            </div>
+            <p class="price">${product.price}</p>
+            <p class="description">${product.description}</p>
+            
+            <div class="product-meta">
+              <div class="meta-item">
+                <i class="fas fa-truck"></i>
+                <span>Free Shipping</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-undo"></i>
+                <span>30 Days Return</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-check-circle"></i>
+                <span>In Stock</span>
+              </div>
+            </div>
+            
+            <div class="action-buttons">
+              <button class="btn" onClick="handleClick()">
+                <i class="fas fa-shopping-cart"></i> Order Now
+              </button>
+              <a href="index.html" class="btn btn-outline">
+                <i class="fas fa-arrow-left"></i> Back to Products
+              </a>
+            </div>
+          </div>
+        `;
+      }
+      
+      function handleClick() {
+        Swal.fire({
+          title: "Order Placed Successfully!",
+          text: "Your product will be delivered soon.",
+          icon: "success",
+          draggable: true,
+          confirmButtonText: 'Continue Shopping',
+          confirmButtonColor: '#764ba2'
+        });
+      }
+    </script>
+  </body>
+</html>

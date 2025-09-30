@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Book</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tektur:wght@400..900&display=swap");
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+   
+::-webkit-scrollbar {
+  width: 10px;            
+  height: 10px;           
+}
+
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;      
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #a8a8a8;     
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7a7a7a;      
+}
+
+
+      body {
+        overflow-x: hidden;
+      }
+
+      .mainContainer {
+        height: 100vh;
+        position: relative;
+      }
+
+      .hero {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        position: sticky;
+        top: 0%;
+      }
+
+      video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .heroHeading {
+        position: absolute;
+        top: 0%;
+        width: 100%;
+        z-index: 2;
+      }
+
+      .heroHeading > h1 {
+        padding-top: 7px;
+        text-align: center;
+        font-size: 6rem;
+        color: aliceblue;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Tektur", sans-serif;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .smallVideo {
+        border-radius: 20px;
+        height: 70px;
+        width: 170px;
+        margin: 10px 0;
+      }
+
+      .heroPara {
+        position: absolute;
+        bottom: 10%;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        width: 100%;
+        z-index: 2;
+      }
+
+      .heroPara p {
+        width: 300px;
+        text-align: end;
+        color: aliceblue;
+        padding-right: 20px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .imgDivParent {
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        z-index: 1;
+        display: flex;
+        top: 0%;
+        height: 100%;
+      }
+
+      .imgDiv {
+        height: 200px;
+        width: 200px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        padding-top: 20px;
+      }
+
+      .imgDiv img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+      .contactBook {
+        min-height: 100vh;
+        width: 100%;
+        background: linear-gradient(135deg, #e3f2fd, #ffffff);
+        padding: 40px 20px;
+        position: relative;
+      }
+
+      .contactBookPageHeading {
+        text-align: center;
+        font-family: "Tektur", sans-serif;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+      }
+
+      .contactBookPageHeading h1 {
+        font-size: 2.5rem;
+        color: #34495e;
+      }
+
+      .cardHolder {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 90%;
+        margin: auto;
+        justify-content: center;
+      }
+
+      .card {
+        width: 280px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        color: #333;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        padding: 15px;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+      }
+
+      .card div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+      }
+      .delete-btn{
+        cursor: pointer;
+      }
+
+      .delete-div {
+        display: flex;
+        justify-content: flex-end;
+        padding-bottom: 5px;
+      }
+
+      .card p {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #555;
+        cursor: pointer;
+      }
+
+      .edit-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .edit-btn img {
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+      }
+
+      .edit-btn:hover {
+        transform: scale(1.2);
+      }
+      .btn-add {
+        border-radius: 50%;
+        overflow: hidden;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+      .btn-add:hover {
+        transform: scale(1.2);
+      }
+      .btn-add img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+      .plus-div {
+        position: absolute;
+        left: 90%;
+        bottom: 10%;
+      }
+      /* Overlay background (blur + darken) */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px); 
+      
+        justify-content: center;
+        align-items: center;
+        z-index: 999; 
+      }
+      .hidden{
+        display: none;
+      }
+      .show{
+        display: flex;
+      }
+   
+      .model {
+        margin-top: 15%;
+        margin-left: 35%;
+        padding-top: 30px;
+        background: #34495e;
+        color: white;
+        width: 350px;
+        border-radius: 12px;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        animation: popup 0.3s ease; 
+      }
+
+      /* Inputs */
+      .model input {
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        width: 100%;
+      }
+
+    
+      .model button {
+        padding: 10px;
+        background: #1abc9c;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .model button:hover {
+        background: #16a085;
+      }
+      #add-Contact-btn:disabled {
+  background-color: #ccc;  
+  color: #666;             
+  cursor: not-allowed;      
+  opacity: 0.6;            
+}
+      #edit-Contact-btn:disabled {
+  background-color: #ccc;  
+  color: #666;             
+  cursor: not-allowed;      
+  opacity: 0.6;            
+}
+
+      /* Popup animation */
+      @keyframes popup {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="mainContainer">
+      <div class="hero">
+        <video autoplay muted loop src="./video.mp4"></video>
+
+        <div class="heroHeading">
+          <h1 class="heading">
+            Stay Connected <br />
+            <video
+              autoplay
+              loop
+              muted
+              class="smallVideo"
+              src="./video.mp4"
+            ></video>
+            Anytime
+          </h1>
+        </div>
+
+        <div class="heroPara">
+          <p>
+            With MS Contact Book, keeping track of your loved ones and
+            colleagues has never been easier. Store all your contacts securely,
+            connect with them whenever you want, and enjoy the convenience of
+            having everyone you care about just a tap away.
+          </p>
+        </div>
+
+        <div class="imgDivParent">
+          <div class="imgDiv">
+            <img
+              src="https://www.shutterstock.com/image-illustration/3d-clipboard-pencil-on-pink-600nw-2107562936.jpg"
+              alt=""
+              class="expandable-img"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="contactBook">
+        <div class="contactBookPageHeading">
+          <h1 id="contactHeading">YOU CAN ADD AND DELECT <br/> CONTACT FROM HERE</h1>
+        </div>
+
+        <div class="cardHolder">
+            
+       
+        </div>
+
+        <div class="plus-div">
+          <button id="addbtn" class="btn-add">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNMwjCAf25MCygoeeb3NGLhpdfncOlLDMsfQ&s"
+              alt=""
+            />
+          </button>
+        </div>
+
+        <!-- Overlay wrapper -->
+        <div class="overlay hidden" id="overlay">
+          <div class="model">
+            <input id="name"  type="text" required placeholder="Enter name" />
+            <input id="number" type="text" required placeholder="Enter number" />
+            <button id="add-Contact-btn">Add Contact</button>
+            <button id="edit-Contact-btn">Save changes</button>
+        </div>
+
+      
+      
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+
+    <script>
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+
+      let tl = gsap.timeline();
+
+      tl.from(".heading", {
+        opacity: 0,
+        duration: 1,
+        x: -80,
+        ease: "power3.out",
+      })
+
+        .from(
+          ".heading video",
+          {
+            opacity: 0,
+            scale: 0.5,
+            duration: 1,
+            ease: "back.out(1.7)",
+          },
+          "-=0.5"
+        )
+
+        .from(".heroPara p", {
+          opacity: 0,
+          y: 60,
+          duration: 1.2,
+          ease: "power2.out",
+        })
+        .from(".imgDiv img", {
+          opacity: 0,
+          duration: 1.2,
+          ease: "power2.out",
+        });
+
+      gsap.to(".imgDiv", {
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+          markers: false,
+        },
+        height: "100%",
+        width: "100%",
+        borderRadius: "0",
+        ease: "power2.inOut",
+      });
+
+      gsap.to(".heroHeading, .heroPara", {
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+        opacity: 0,
+        ease: "power2.inOut",
+      });
+
+
+      gsap.from("#contactHeading",{
+        scrollTrigger:{
+          trigger: "#contactHeading",
+          // markers:true,
+          scrub: 1,
+          // start: "20%",
+          // end: "20%"
+        },
+        opacity: 0,
+        duration: 1,
+        delay: 1,
+
+      })
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="script.js"></script>
+<script type="module" src="db.js"></script>
+  </body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - MS-SHOPS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #fafafa;
+        color: #1f2937;
+      }
+
+      /* Navbar */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        width: 100%;
+        padding: 0.8rem 2rem;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent;
+        color: white;
+        height: 70px;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 800;
+        background: linear-gradient(45deg, #6366f1, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      ul {
+        display: flex;
+        gap: 2rem;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      a:hover {
+        color: #a855f7;
+      }
+
+      a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: linear-gradient(45deg, #6366f1, #a855f7);
+        transition: width 0.3s ease;
+      }
+
+      a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .about-hero {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        color: white;
+        padding: 5rem 2rem;
+        text-align: center;
+      }
+
+      .about-hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+
+      .about-hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
+      }
+
+      /* Main Content */
+      .about-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      /* Why Shop With Us Section */
+      .shop-with-us {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        margin-bottom: 5rem;
+      }
+
+      @media (min-width: 768px) {
+        .shop-with-us {
+          flex-direction: row;
+          align-items: flex-start;
+        }
+      }
+
+      .image-container {
+        position: relative;
+        flex: 1;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+      }
+
+      .image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .image-container:hover img {
+        transform: scale(1.03);
+      }
+
+      .stats-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .stats-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .stats-text {
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      .text-content {
+        flex: 1;
+        padding: 0 1rem;
+      }
+
+      .text-content h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .divider {
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, #6366f1, #a855f7);
+        border-radius: 2px;
+        margin-bottom: 1.5rem;
+      }
+
+      .text-content p {
+        color: #6b7280;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+      }
+
+      /* Features Section */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 5rem;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        background: rgba(99, 102, 241, 0.1);
+        color: #6366f1;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #1f2937;
+      }
+
+      .feature-card p {
+        color: #6b7280;
+        line-height: 1.6;
+      }
+
+      /* Team Section */
+      .team-section {
+        margin-bottom: 5rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .section-header p {
+        color: #6b7280;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .team-members {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .team-member {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .team-member:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .member-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .member-info {
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .member-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #1f2937;
+      }
+
+      .member-role {
+        color: #6366f1;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .member-desc {
+        color: #6b7280;
+        font-size: 0.9rem;
+      }
+
+      /* Values Section */
+      .values-section {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        padding: 5rem 2rem;
+        border-radius: 20px;
+        margin-bottom: 5rem;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .value-item {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .value-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: white;
+        color: #6366f1;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .value-item h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #1f2937;
+      }
+
+      .value-item p {
+        color: #6b7280;
+        line-height: 1.6;
+      }
+
+      /* Animation */
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .about-hero h1 {
+          font-size: 2.2rem;
+        }
+        
+        .about-hero p {
+          font-size: 1rem;
+        }
+        
+        .text-content h2 {
+          font-size: 1.8rem;
+        }
+        
+        .section-header h2 {
+          font-size: 2rem;
+        }
+        
+        .stats-card {
+          left: 50%;
+          transform: translateX(-50%);
+          max-width: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">MS-SHOPS</div>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="#">All Products</a></li>
+          <li><a href="/Detail.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+  
+    <div class="about-content">
+      <!-- Why Shop With Us Section -->
+      <section class="shop-with-us">
+        <div class="image-container">
+          <img
+            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500&auto=format&fit=crop"
+            alt="Shopping Experience"
+          />
+          <div class="stats-card">
+            <div class="stats-icon">10k+</div>
+            <div class="stats-text">Happy Customers Worldwide</div>
+          </div>
+        </div>
+        
+        <div class="text-content">
+          <h2>Why Shop With Us?</h2>
+          <div class="divider"></div>
+          <p>
+            At MS-SHOPS, we're committed to providing an exceptional shopping experience 
+            with high-quality products at unbeatable prices. Our secure payment options 
+            and fast global delivery ensure you get what you need, when you need it.
+          </p>
+          <p>
+            From the latest fashion trends to cutting-edge electronics, we bring you 
+            trusted brands and exclusive deals. Our carefully curated collections are 
+            designed to meet your lifestyle needs while keeping you ahead of the curve.
+          </p>
+          <p>
+            Your satisfaction is our top priority. Enjoy hassle-free returns and 24/7 
+            customer support from our dedicated team. We're not just a store – we're your 
+            shopping partner.
+          </p>
+          <a href="#" class="cta-button">
+            <span>Shop Now</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shipping-fast"></i>
+          </div>
+          <h3>Fast Global Shipping</h3>
+          <p>We deliver to over 50 countries worldwide with express shipping options and real-time tracking.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Secure Payments</h3>
+          <p>Your transactions are protected with industry-leading encryption and multiple payment options.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-undo"></i>
+          </div>
+          <h3>Easy Returns</h3>
+          <p>Not satisfied? Our 30-day return policy makes it easy to exchange or get a full refund.</p>
+        </div>
+      </section>
+
+      <!-- Values Section -->
+      <section class="values-section">
+        <div class="section-header">
+          <h2>Our Values</h2>
+          <p>The principles that guide everything we do</p>
+        </div>
+        
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-gem"></i>
+            </div>
+            <h3>Quality</h3>
+            <p>We carefully select each product to ensure it meets our high standards of quality and durability.</p>
+          </div>
+          
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-hand-holding-heart"></i>
+            </div>
+            <h3>Customer First</h3>
+            <p>Your satisfaction is our priority. We listen to feedback and continuously improve our services.</p>
+          </div>
+          
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3>Sustainability</h3>
+            <p>We're committed to ethical sourcing and reducing our environmental impact through eco-friendly practices.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="team-section">
+        <div class="section-header">
+          <h2>Our Team</h2>
+          <p>The passionate people behind MS-SHOPS</p>
+        </div>
+        
+        <div class="team-members">
+          <div class="team-member">
+            <img 
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" 
+              alt="Team Member" 
+              class="member-image"
+            >
+            <div class="member-info">
+              <h3 class="member-name">Michael Johnson</h3>
+              <p class="member-role">Founder & CEO</p>
+              <p class="member-desc">With over 15 years in e-commerce, Michael founded MS-SHOPS with a vision to create a customer-centric shopping platform.</p>
+            </div>
+          </div>
+          
+          <div class="team-member">
+            <img 
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" 
+              alt="Team Member" 
+              class="member-image"
+            >
+            <div class="member-info">
+              <h3 class="member-name">Sarah Ahmed</h3>
+              <p class="member-role">Head of Product</p>
+              <p class="member-desc">Sarah curates our product selection, ensuring we offer the latest trends and highest quality items to our customers.</p>
+            </div>
+          </div>
+          
+          <div class="team-member">
+            <img 
+              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" 
+              alt="Team Member" 
+              class="member-image"
+            >
+            <div class="member-info">
+              <h3 class="member-name">Hamza</h3>
+              <p class="member-role">Customer Experience</p>
+              <p class="member-desc">hamza leads our customer support team, ensuring every shopper has a seamless and satisfying experience.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Simple animation for stats card
+      document.addEventListener('DOMContentLoaded', function() {
+        const statsCard = document.querySelector('.stats-card');
+        
+        if (statsCard) {
+          setInterval(() => {
+            statsCard.style.animation = 'none';
+            setTimeout(() => {
+              statsCard.style.animation = 'float 3s ease-in-out infinite';
+            }, 10);
+          }, 3000);
+        }
+      });
+    </script>
+  </body>
+</html>
