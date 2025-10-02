@@ -7,6 +7,14 @@ const editContactBtn = document.getElementById("edit-Contact-btn");
 const nameInput = document.getElementById("name");
 const numberInput = document.getElementById("number");
 
+function initTilt() {
+  VanillaTilt.init(document.querySelectorAll(".card"), {
+    max: 25,
+    speed: 400,
+    scale: 1.1,
+  });
+}
+
 let editId = null;
 
 // Overlay open for Add
@@ -90,6 +98,8 @@ async function renderContact() {
       </div>
     `;
   });
+
+  initTilt();
 }
 
 // Delete & Edit handlers
