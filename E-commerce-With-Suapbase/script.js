@@ -1,6 +1,5 @@
 import { getData } from "./db.js";
 
-// 🧭 NAVBAR SETUP
 const nav_ul = document.getElementById("nav-ul");
 const lis = ["Home", "Products", "About"];
 
@@ -21,7 +20,6 @@ const session = null;
 // 📦 FETCH AND RENDER PRODUCTS
 async function getProducts() {
   heroProducts = await getData();
-  console.log("Fetched Products:", heroProducts);
 
   const cardHolder = document.getElementById("card-holder");
 
