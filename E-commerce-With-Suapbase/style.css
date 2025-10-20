@@ -1,0 +1,134 @@
+/* font import  */
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tektur:wght@400..900&display=swap");
+
+/* navbar styling  */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.hero-Container{
+  height: 100vh;
+  width: 100%;
+  /* overflow-x: hidden; */
+}
+.nav {
+  display: flex;
+  margin: 10px;
+  padding: 5px;
+  justify-content: space-around;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  align-items: center;
+}
+.nav-ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 5px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.nav-item .line {
+  position: absolute;
+  bottom: 10;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover .line {
+  width: 100%;
+}
+
+.login_Signup button {
+  border: none;
+  border-radius: 12px;
+  padding: 5px 20px;
+  background-color: #3b3b3b;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.login_Signup button a {
+  text-decoration: none;
+  color: #fff;
+}
+.login_Signup button:hover {
+  background-color: #6a6867;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* HERO STYLING  */
+
+.hero {
+  background-color: black;
+  margin: 10px;
+  border-radius: 10px;
+  height: 85vh;
+  position: relative;
+}
+.hero img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.heroImg {
+  object-fit: cover;
+}
+.hero-Content {
+  position: absolute;
+  top: 90px;
+  z-index: 10;
+  width: 100%;
+  color: white;
+}
+.hero-Content h1 {
+  text-align: center;
+  font-size: 100px;
+  font-family: "Tektur", sans-serif;
+  letter-spacing: 0.9rem;
+  animation: h1 4s ease forwards;
+  /* animation-delay: 1s; */
+}
+.hero-Content p {
+  width: 30%;
+  padding-top: 40px;
+  margin-left: 820px;
+  animation: p 3s ease forwards;
+  opacity: 0;
+  animation-delay: 1.5s;
+}
+
+@keyframes h1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes p {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
