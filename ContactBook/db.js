@@ -7,7 +7,7 @@ const supabase = createClient(
 // console.log(supabase);
 
 export const getData = async () => {
-  const { data, error } = await supabase.from("ContactBook").select("*");
+  const { data, error } = await supabase.from("Products").select("*");
   if (data) {
     // console.log(data);
     return data;
