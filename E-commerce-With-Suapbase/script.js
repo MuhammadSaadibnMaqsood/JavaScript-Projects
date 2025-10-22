@@ -1,4 +1,30 @@
-import { getData } from "./db.js";
+import { getData, getSession, logout } from "./db.js";
+
+// 🛍️ GLOBAL VARIABLES
+let heroProducts = [];
+let session;
+
+const sessionfunc = async () => {
+  session = await getSession();
+  const login_btn = document.getElementById("login-btn");
+
+  if (session) {
+    login_btn.textContent = "Logout";
+    console.log(session);
+
+    login_btn.addEventListener("click", async () => {
+      await logout();
+      location.reload();
+    });
+  } else {
+    login_btn.textContent = "Login";
+    login_btn.addEventListener("click", () => {
+      window.location.href = "/login_Signup/login.html";
+    });
+  }
+};
+
+sessionfunc();
 
 const nav_ul = document.getElementById("nav-ul");
 const lis = ["Home", "Products", "About"];
@@ -12,10 +38,6 @@ if (nav_ul) {
       </li>`;
   });
 }
-
-// 🛍️ GLOBAL VARIABLES
-let heroProducts = [];
-const session = null;
 
 // 📦 FETCH AND RENDER PRODUCTS
 async function getProducts() {

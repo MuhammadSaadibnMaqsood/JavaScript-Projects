@@ -13,3 +13,53 @@ export const getData = async () => {
     console.log(error);
   }
 };
+
+// SIGN UP
+export const signUp = async (email, password) => {
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+  });
+
+  if (data) {
+    return data;
+  } else {
+    console.log(error);
+  }
+};
+
+// GET SESSION
+
+export const getSession = async () => {
+  const { data, error } = await supabase.auth.getSession();
+  if (data?.session) {
+    return data;
+  } else {
+    console.log(error);
+  }
+};
+
+// LOGOUT
+
+export const logout = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    console.log(error);
+  }
+};
+
+//LOGIN
+
+export const login = async (email, password) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (data?.user) {
+    return data;
+  } else {
+    console.error(error);
+    return null;
+  }
+};

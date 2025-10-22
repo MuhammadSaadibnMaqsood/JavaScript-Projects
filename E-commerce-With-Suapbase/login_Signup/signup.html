@@ -127,12 +127,19 @@
   <body>
     <div class="form-container">
       <h2>Create Account</h2>
-      <input type="text" placeholder="Enter your full name" />
-      <input type="email" placeholder="Enter your email" />
-      <input type="password" placeholder="Create a password" />
-      <input type="password" placeholder="Confirm your password" />
-      <button>Register</button>
+      <input id="name" type="text" placeholder="Enter your full name" />
+      <input id="email" type="email" placeholder="Enter your email" />
+      <input id="password" type="password" placeholder="Create a password" />
+      <input
+        id="Confirm-password"
+        type="password"
+        placeholder="Confirm your password"
+      />
+      <button id="register-btn">Register</button>
       <p>Already have an account? <a href="./login.html">Login</a></p>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="loginSign.js"></script>
+    <script type="module" src="../db.js"></script>
   </body>
 </html>
