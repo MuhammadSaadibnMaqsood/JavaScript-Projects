@@ -48,7 +48,7 @@ async function getProducts() {
   // ✅ INDEX PAGE (PRODUCT CARDS)
   if (cardHolder) {
     cardHolder.innerHTML = ""; // Clear previous content
-    heroProducts.forEach((product) => {
+    heroProducts.slice(0,4).forEach((product) => {
       cardHolder.innerHTML += `
         <a href="Product.html?id=${product.id}">
           <div class="card">
@@ -101,7 +101,9 @@ function individual_Product() {
   }
 
   const orderbtn = document.getElementById("order-btn");
-  orderbtn.addEventListener("click", handleClick);
+  if (orderbtn) {
+    orderbtn.addEventListener("click", handleClick);
+  }
 
   function handleClick() {
     if (session) {

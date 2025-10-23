@@ -1,0 +1,194 @@
+/* Import Google Font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --sidebar-width: 250px;
+  --bg-dark: #1e1e2d;
+  --bg-light: #27293d;
+  --text-color: #f0f0f0;
+  --primary-color: #00e0ff; /* Blue */
+  --secondary-color: #5d5d81; /* Lighter dark */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  display: grid;
+  /* Sidebar width (250px) aur baaki jagah (1fr) main content ke liye */
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar Styling ===== */
+.sidebar {
+  background-color: var(--bg-light);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .logo {
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.sidebar .nav-menu {
+  flex-grow: 1; /* Nav items ko beech mein push karne ke liye */
+}
+
+.sidebar .nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin: 8px 0;
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-item i {
+  margin-right: 15px;
+  font-size: 18px;
+}
+
+.sidebar .nav-item:hover,
+.sidebar .nav-item.active {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* ===== Header Styling ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: var(--bg-light);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-size: 24px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-right i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.header-right .profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* ===== Product Section Styling (Main Content) ===== */
+.main-content {
+  padding-bottom: 30px;
+}
+
+.product-section {
+  padding: 20px 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.add-btn {
+  background-color: var(--primary-color);
+  color: var(--bg-dark);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #00b3cc;
+}
+
+.add-btn i {
+  margin-right: 8px;
+}
+
+/* ===== Table Styling ===== */
+.table-wrapper {
+  background-color: var(--bg-light);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+table th {
+  background-color: var(--bg-dark);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/* Table Body Rows */
+table tbody tr:hover {
+  background-color: rgba(0, 224, 255, 0.05); /* Light hover effect */
+}
+
+/* Image Column */
+.product-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Action Buttons */
+.action-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.action-btn:hover {
+  color: #0077ff;
+}

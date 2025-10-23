@@ -63,3 +63,21 @@ export const login = async (email, password) => {
     return null;
   }
 };
+
+// ADD PRODCUT
+
+export const addProduct = async (name, price, img) => {
+  const { data, error } = await supabase.from("Products").insert({
+    name: name,
+    price: price,
+    img: img,
+    email: "saad@gmail.com",
+  });
+
+  if (data) {
+    return data;
+  }else{
+    console.log(error);
+    
+  }
+};
