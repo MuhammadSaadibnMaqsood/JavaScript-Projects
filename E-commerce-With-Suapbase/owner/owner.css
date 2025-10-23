@@ -1,194 +1,311 @@
-/* Import Google Font - Poppins */
+/* Custom Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --sidebar-width: 250px;
-  --bg-dark: #1e1e2d;
-  --bg-light: #27293d;
-  --text-color: #f0f0f0;
-  --primary-color: #00e0ff; /* Blue */
-  --secondary-color: #5d5d81; /* Lighter dark */
+  /* Theme Colors (White and flat) */
+  --bg-main: #f4f7f9;      /* Main body background (Slightly off-white) */
+  --bg-light: #ffffff;     /* Container/Card background (Pure white) */
+  --sidebar-color: #ffffff;
+  --highlight-color: #e5f4ff; /* Light blue highlight for hover/active */
+  --text-color-dark: #333333; /* Dark text */
+  --text-color-light: #6c757d; /* Lighter text for details */
+  --primary-color: #007bff; /* Primary Accent Blue */
+  --secondary-color: #28a745; /* Green for success/sells */
+  --bar-color: #ffc107;      /* Yellow/Orange for bars */
 }
 
+/* Global Reset and Body Styling */
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  color: var(--text-color-dark); /* Default text is dark */
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-color);
+  background-color: var(--bg-main);
   min-height: 100vh;
 }
 
-.dashboard-container {
-  display: grid;
-  /* Sidebar width (250px) aur baaki jagah (1fr) main content ke liye */
-  grid-template-columns: var(--sidebar-width) 1fr;
-  min-height: 100vh;
-}
+/* ---------------------------------------------------- */
+/* ===== Navbar (Unchanged as requested) ===== */
+/* NOTE: Navbar will remain dark as per your original code. */
+/* We only adjust dashboard content below. */
+/* ---------------------------------------------------- */
 
-/* ===== Sidebar Styling ===== */
-.sidebar {
-  background-color: var(--bg-light);
-  padding: 20px;
+.nav {
   display: flex;
-  flex-direction: column;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.sidebar .logo {
-  margin-bottom: 30px;
-  text-align: center;
-  color: var(--primary-color);
-}
-
-.sidebar .nav-menu {
-  flex-grow: 1; /* Nav items ko beech mein push karne ke liye */
-}
-
-.sidebar .nav-item {
-  display: flex;
+  margin: 10px;
+  padding: 5px;
+  justify-content: space-around;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
   align-items: center;
-  padding: 12px 15px;
-  margin: 8px 0;
-  color: var(--text-color);
+}
+.nav-left h1{
+    color: white;
+}
+.nav-ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-ul a {
   text-decoration: none;
-  border-radius: 8px;
+  color: white;
+}
+.nav-item {
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 5px;
+  color: #fff;
+  font-weight: 500;
+}
+.nav-item .line {
+  position: absolute;
+  bottom: 10;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+.nav-item:hover .line {
+  width: 100%;
+}
+.login_Signup button {
+  border: none;
+  border-radius: 12px;
+  padding: 5px 20px;
+  background-color: #3b3b3b;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
-
-.sidebar .nav-item i {
-  margin-right: 15px;
-  font-size: 18px;
+.login_Signup button a {
+  text-decoration: none;
+  color: #fff;
+}
+.login_Signup button:hover {
+  background-color: #6a6867;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.sidebar .nav-item:hover,
-.sidebar .nav-item.active {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-}
+/* ---------------------------------------------------- */
+/* ===== Main Container Layout (White Theme) ===== */
+/* ---------------------------------------------------- */
 
-/* ===== Header Styling ===== */
-.header {
+.main-Container {
   display: flex;
-  justify-content: space-between;
+  padding: 10px;
+  gap: 10px;
+  min-height: calc(100vh - 70px);
+}
+
+/* ---------------------------------------------------- */
+/* ===== Left Side (Sidebar) Styling ===== */
+/* ---------------------------------------------------- */
+
+.leftside {
+  width: 280px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 20px 30px;
-  background-color: var(--bg-light);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  gap: 15px;
+  background-color: var(--bg-light); /* White background */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
-.header h1 {
-  font-size: 24px;
-}
-
-.header-right {
+.leftside a {
+  text-decoration: none;
+  color: var(--text-color-dark); /* Dark link text */
+  width: 90%;
+  min-height: 3.5rem;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 20px;
+  padding-left: 20px;
+  justify-content: flex-start;
+  transition: all 0.3s;
+  font-weight: 500;
 }
 
-.header-right i {
+.leftside a:hover,
+.leftside a.active {
+  background-color: var(--highlight-color); /* Light blue highlight */
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+.leftside a i {
   font-size: 20px;
-  cursor: pointer;
+  color: var(--primary-color); /* Primary blue icon color */
 }
 
-.header-right .profile {
+.leftside a:hover i {
+    color: var(--primary-color); /* Keep icon color on hover */
+}
+
+.leftside a span {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
+  flex-direction: column;
+  gap: 2px;
 }
 
-/* ===== Product Section Styling (Main Content) ===== */
-.main-content {
-  padding-bottom: 30px;
+.leftside a span span {
+  /* Email style */
+  font-size: 0.8em;
+  color: var(--text-color-light); /* Gray email text */
 }
 
-.product-section {
-  padding: 20px 30px;
-}
+/* ---------------------------------------------------- */
+/* ===== Right Side (Content Area) Styling ===== */
+/* ---------------------------------------------------- */
 
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
-.add-btn {
-  background-color: var(--primary-color);
-  color: var(--bg-dark);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.add-btn:hover {
-  background-color: #00b3cc;
-}
-
-.add-btn i {
-  margin-right: 8px;
-}
-
-/* ===== Table Styling ===== */
-.table-wrapper {
-  background-color: var(--bg-light);
-  border-radius: 10px;
+.rightside {
+  flex-grow: 1;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background-color: var(--bg-light); /* White background */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
 }
 
+.rightside h1 {
+  text-align: left;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--highlight-color);
+  color: var(--text-color-dark);
+  font-size: 1.8rem;
+}
+
+/* ===== Graph Section Styling (No Gradient) ===== */
+.rightside .graph {
+  height: 250px;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--bg-main); /* Slightly gray background for contrast */
+  border-radius: 8px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-end;
+  gap: 1%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.graph .bar {
+  width: 8%;
+  background-color: var(--bar-color); /* Flat yellow/orange color */
+  border-radius: 4px 4px 0 0;
+  transition: height 0.5s ease;
+  min-height: 5px;
+}
+/* Bar Heights (Kept same as previous version) */
+.graph .bar1 {
+  height: 40%;
+}
+.graph .bar2 {
+  height: 60%;
+}
+.graph .bar3 {
+  height: 90%;
+}
+.graph .bar4 {
+  height: 70%;
+}
+.graph .bar5 {
+  height: 65%;
+}
+.graph .bar6 {
+  height: 40%;
+}
+.graph .bar7 {
+  height: 80%;
+}
+.graph .bar8 {
+  height: 40%;
+}
+.graph .bar9 {
+  height: 85%;
+}
+.graph .bar10 {
+  height: 50%;
+}
+
+
+/* ===== Table Styling (Clean White) ===== */
 table {
   width: 100%;
   border-collapse: collapse;
-  text-align: left;
+  background-color: var(--bg-light);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-table th,
+table tr {
+  border-bottom: 1px solid var(--highlight-color);
+}
+
+table tr:last-child {
+  border-bottom: none;
+}
+
 table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid var(--secondary-color);
+  padding: 15px 20px;
+  font-weight: 400;
+  color: var(--text-color-dark);
 }
 
-table th {
-  background-color: var(--bg-dark);
+/* Header Row (First Row) Styling */
+table tr:first-child {
+  background-color: var(--bg-main); /* Light gray header */
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 0.9em;
+  color: var(--text-color-dark);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-/* Table Body Rows */
-table tbody tr:hover {
-  background-color: rgba(0, 224, 255, 0.05); /* Light hover effect */
+/* Hover effect on data rows */
+table tr:not(:first-child):hover {
+  background-color: var(--highlight-color);
 }
 
-/* Image Column */
-.product-img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-/* Action Buttons */
-.action-btn {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  cursor: pointer;
-  margin-right: 10px;
-  font-size: 16px;
-  transition: color 0.2s;
-}
-
-.action-btn:hover {
-  color: #0077ff;
+/* Responsive adjustment (Optional but recommended) */
+@media (max-width: 768px) {
+  .main-Container {
+    flex-direction: column;
+  }
+  .leftside {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  .leftside a {
+    width: auto;
+    min-height: auto;
+    padding: 10px;
+    justify-content: center;
+  }
+  .leftside a span {
+    display: none;
+  }
+  .rightside {
+    width: 100%;
+    padding: 15px;
+  }
 }

@@ -76,8 +76,23 @@ export const addProduct = async (name, price, img) => {
 
   if (data) {
     return data;
-  }else{
+  } else {
     console.log(error);
-    
+  }
+};
+
+//GET OWNER ITEMS
+
+export const getOwnerData = async () => {
+  const {data, error } = await supabase
+    .from("Products")
+    .select("*")
+    .eq("email", "saad@gmail.com");
+
+  if (data) {
+    console.log(data);
+    return data
+  } else {
+    console.log(error);
   }
 };
