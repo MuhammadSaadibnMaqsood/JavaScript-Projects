@@ -1,4 +1,4 @@
-import { addProduct, getOwnerData } from "../db.js";
+import { addProduct, getOwnerData, getSession } from "../db.js";
 const cloudName = "dnltltfsk";
 const add_product_btn = document.getElementById("add-product");
 const imgInput = document.getElementById("img");
@@ -20,7 +20,37 @@ if (nav_ul) {
       </li>`;
   });
 }
+let session;
 
+const sessionfunc = async () => {
+  session = await getSession();
+  const login_btn = document.getElementById("login-btn");
+
+  if (
+    !session ||
+    (!session.session &&
+      (window.location.href.includes("owner.html") ||
+        window.location.href.includes("uploadProduct.html")))
+  ) {
+    window.location.href = "/";
+    return;
+  }
+  if (session && session.session) {
+    login_btn.textContent = "Logout";
+
+    login_btn.addEventListener("click", async () => {
+      await logout();
+      location.reload();
+    });
+  } else {
+    login_btn.textContent = "Login";
+    login_btn.addEventListener("click", () => {
+      window.location.href = "/login_Signup/login.html";
+    });
+  }
+};
+
+sessionfunc();
 const uploadImage = async (file) => {
   const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
@@ -63,7 +93,6 @@ if (add_product_btn) {
 
     if (imageUrl) {
       await addProduct(name, price, imageUrl);
-      // console.log("Image URL (from Cloudinary direct upload):", imageUrl);
 
       document.getElementById("name").value = "";
       document.getElementById("price").value = "";

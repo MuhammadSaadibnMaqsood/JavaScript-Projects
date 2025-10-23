@@ -22,14 +22,30 @@ if (nav_ul) {
 
 const sessionfunc = async () => {
   session = await getSession();
+
+  if (
+    !session?.session &&
+    (window.location.href.includes("/owner/dashboard.html") ||
+      window.location.href.includes("/owner/uploadProduct.html"))
+  ) {
+    window.location.href = "/";
+  }
+
   const login_btn = document.getElementById("login-btn");
 
-  if (session.session) {
+  if (session) {
     login_btn.textContent = "Logout";
 
     login_btn.addEventListener("click", async () => {
       await logout();
       location.reload();
+      Swal.fire({
+        title: "Logout successfully!",
+        text: "",
+        icon: "success",
+        confirmButtonText: "close",
+        confirmButtonColor: "#764ba2",
+      });
     });
   } else {
     login_btn.textContent = "Login";
@@ -66,7 +82,10 @@ async function getProducts() {
   if (cardHolder) {
     cardHolder.innerHTML = ""; // Clear previous content
 
-    if (window.location.href == "http://127.0.0.1:5500/Products.html") {
+    if (
+      window.location.href == "http://127.0.0.1:5500/Products.html" ||
+      window.location.href == "http://127.0.0.1:5500/products.html"
+    ) {
       heroProducts.forEach((product) => {
         cardHolder.innerHTML += `
         <a href="Product.html?id=${product.id}">
