@@ -4,6 +4,23 @@ const add_product_btn = document.getElementById("add-product");
 const imgInput = document.getElementById("img");
 const imgRender = document.querySelector(".img-render");
 
+// ../index.html
+
+const nav_ul = document.getElementById("nav-ul");
+const lis = ["Home", "Products", "About"];
+
+if (nav_ul) {
+  lis.forEach((tag) => {
+    nav_ul.innerHTML += `
+      <li class="nav-item">
+        <a href="${
+          tag === "Home" ? "../index.html" : "../" + tag + ".html"
+        }">${tag}</a>
+        <div class="line"></div>
+      </li>`;
+  });
+}
+
 const uploadImage = async (file) => {
   const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
@@ -46,7 +63,7 @@ if (add_product_btn) {
 
     if (imageUrl) {
       await addProduct(name, price, imageUrl);
-      console.log("Image URL (from Cloudinary direct upload):", imageUrl);
+      // console.log("Image URL (from Cloudinary direct upload):", imageUrl);
 
       document.getElementById("name").value = "";
       document.getElementById("price").value = "";
@@ -54,8 +71,22 @@ if (add_product_btn) {
       imgRender.src = "";
       imgRender.style.display = "none";
       document.querySelector(".plus-icon").style.display = "block";
+
+      Swal.fire({
+        title: "Products added!",
+        text: "Product added succesfully.",
+        icon: "success",
+        confirmButtonText: "Close",
+        confirmButtonColor: "#764ba2",
+      });
     } else {
-      alert("Failed to upload image. Please try again.");
+      Swal.fire({
+        title: "Products Not Added!",
+        text: "Internal server error 500.",
+        icon: "error",
+        confirmButtonText: "Close",
+        confirmButtonColor: "#764ba2",
+      });
     }
   });
 }
@@ -92,11 +123,11 @@ const fetchData = async () => {
         <tr>
           <td>${item.name}</td>
           <td>${item.price}rs</td>
-          <td>${totalsell + 10}</td>
+          <td>${totalsell}</td>
         </tr>
       `;
+      totalsell += 10;
     });
   }
 };
 fetchData();
-

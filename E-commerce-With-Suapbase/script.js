@@ -4,13 +4,28 @@ import { getData, getSession, logout } from "./db.js";
 let heroProducts = [];
 let session;
 
+const nav_ul = document.getElementById("nav-ul");
+const lis = ["Home", "Products", "About"];
+
+if (nav_ul) {
+  // Create nav items
+  lis.forEach((tag) => {
+    const pageLink =
+      tag === "Home" ? "index.html" : `${tag.toLowerCase()}.html`;
+    nav_ul.innerHTML += `
+      <li class="nav-item">
+        <a href="${pageLink}">${tag}</a>
+        <div class="line"></div>
+      </li>`;
+  });
+}
+
 const sessionfunc = async () => {
   session = await getSession();
   const login_btn = document.getElementById("login-btn");
 
-  if (session) {
+  if (session.session) {
     login_btn.textContent = "Logout";
-    console.log(session);
 
     login_btn.addEventListener("click", async () => {
       await logout();
@@ -22,22 +37,24 @@ const sessionfunc = async () => {
       window.location.href = "/login_Signup/login.html";
     });
   }
+
+  if (
+    session.session &&
+    session.session.user &&
+    session.session.user.email &&
+    session.session.user.email.includes("saad") &&
+    !window.location.href.includes("dashboard") &&
+    !window.location.href.includes("uploadProduct")
+  ) {
+    nav_ul.innerHTML += `
+      <li class="nav-item">
+        <a href="./owner/dasboard.html">Dashboard</a>
+        <div class="line"></div>
+      </li>`;
+  }
 };
 
 sessionfunc();
-
-const nav_ul = document.getElementById("nav-ul");
-const lis = ["Home", "Products", "About"];
-
-if (nav_ul) {
-  lis.forEach((tag) => {
-    nav_ul.innerHTML += `
-      <li class="nav-item">
-        <a href="${tag === "Home" ? "index.html" : tag + ".html"}">${tag}</a>
-        <div class="line"></div>
-      </li>`;
-  });
-}
 
 // 📦 FETCH AND RENDER PRODUCTS
 async function getProducts() {
@@ -48,8 +65,28 @@ async function getProducts() {
   // ✅ INDEX PAGE (PRODUCT CARDS)
   if (cardHolder) {
     cardHolder.innerHTML = ""; // Clear previous content
-    heroProducts.slice(0,4).forEach((product) => {
-      cardHolder.innerHTML += `
+
+    if (window.location.href == "http://127.0.0.1:5500/Products.html") {
+      heroProducts.forEach((product) => {
+        cardHolder.innerHTML += `
+        <a href="Product.html?id=${product.id}">
+          <div class="card">
+            <div class="card-img">
+              <img src="${product.img}" alt="${product.name}" />
+            
+              <div class="hover-effect">
+                <div>
+                  <h1>${product.name}</h1>
+                  <p>Price: ${product.price} Rs</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>`;
+      });
+    } else {
+      heroProducts.slice(0, 4).forEach((product) => {
+        cardHolder.innerHTML += `
         <a href="Product.html?id=${product.id}">
           <div class="card">
             <div class="card-img">
@@ -64,7 +101,8 @@ async function getProducts() {
             </div>
           </div>
         </a>`;
-    });
+      });
+    }
   }
 
   // ✅ PRODUCT DETAIL PAGE

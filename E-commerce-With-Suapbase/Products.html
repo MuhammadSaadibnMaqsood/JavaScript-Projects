@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1>Products</h1>
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="nav-left"><h1>HELLO</h1></div>
+        <div class="nav-mid">
+          <ul class="nav-ul" id="nav-ul"></ul>
+        </div>
+        <div class="login_Signup">
+          <button id="login-btn">Login</button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="product-section">
+      <div class="product-section-heading">
+        <h1>ALL PRODUCTS</h1>
+      </div>
+      <div id="card-holder" class="card-holder"></div>
+    </section>
+
+    <script type="module" src="script.js"></script>
+  </body>
 </html>

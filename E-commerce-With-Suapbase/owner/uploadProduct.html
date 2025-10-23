@@ -4,25 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload Product</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <style>
+      /* Custom Fonts */
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        /* Theme Colors (White and flat) */
+        --bg-main: #f4f7f9; /* Main body background (Slightly off-white) */
+        --bg-light: #ffffff; /* Container/Card background (Pure white) */
+        --highlight-color: #e5f4ff; /* Light blue highlight for hover/active */
+        --text-color-dark: #333333; /* Dark text */
+        --text-color-light: #6c757d; /* Lighter text for details */
+        --primary-color: #007bff; /* Primary Accent Blue */
+        --secondary-color: #28a745; /* Green for success */
+      }
+
       * {
         padding: 0;
         margin: 0;
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
+        color: var(--text-color-dark);
       }
 
       body {
-        background-color: #0e0e0e;
-        background-image: radial-gradient(
-          circle at top left,
-          #222 0%,
-          #000 100%
-        );
-        color: white;
+        background-color: var(--bg-main);
+        min-height: 100vh;
       }
 
-      /* ===== Navbar ===== */
+      /* ---------------------------------------------------- */
+      /* ===== Navbar (Original Dark Theme) ===== */
+      /* ---------------------------------------------------- */
       .nav {
         display: flex;
         margin: 10px;
@@ -32,7 +48,9 @@
         color: white;
         border-radius: 10px;
         align-items: center;
-        /* position: fixed; */
+      }
+      .nav-left h1 {
+        color: white;
       }
       .nav-ul {
         display: flex;
@@ -52,7 +70,6 @@
         color: #fff;
         font-weight: 500;
       }
-
       .nav-item .line {
         position: absolute;
         bottom: 10;
@@ -62,11 +79,9 @@
         background-color: #fff;
         transition: width 0.3s ease;
       }
-
       .nav-item:hover .line {
         width: 100%;
       }
-
       .login_Signup button {
         border: none;
         border-radius: 12px;
@@ -88,52 +103,122 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
 
-      /* ===== Container ===== */
-      .container {
-        height: 90vh;
+      /* ---------------------------------------------------- */
+      /* ===== Main Container Layout (Dashboard Layout) ===== */
+      /* ---------------------------------------------------- */
+      .main-Container {
+        display: flex;
+        padding: 10px;
+        gap: 10px;
+        min-height: calc(100vh - 70px);
+      }
+
+      /* ===== Left Side (Sidebar) Styling - Copied from Dashboard ===== */
+      .leftside {
+        width: 280px;
+        padding: 20px 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        gap: 15px;
+        background-color: var(--bg-light);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .leftside a {
+        text-decoration: none;
+        color: var(--text-color-dark);
+        width: 90%;
+        min-height: 3.5rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-left: 20px;
+        justify-content: flex-start;
+        transition: all 0.3s;
+        font-weight: 500;
+      }
+
+      .leftside a:hover,
+      .leftside a.active {
+        background-color: var(--highlight-color);
+        color: var(--primary-color);
+        transform: translateX(5px);
+      }
+
+      .leftside a i {
+        font-size: 20px;
+        color: var(--primary-color);
+      }
+
+      .leftside a span {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .leftside a span span {
+        font-size: 0.8em;
+        color: var(--text-color-light);
+      }
+
+      /* ===== Right Side (Form Area) Styling ===== */
+      .rightside {
+        flex-grow: 1;
+        padding: 20px;
+        background-color: var(--bg-light);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Center the form content vertically */
+      }
+
+      /* Form Container Styling */
+      .container {
+        width: 90%;
+        max-width: 400px; /* Thoda chota kiya taaki form accha dikhe */
+        padding: 40px 30px;
         text-align: center;
       }
 
       .container h2 {
         font-size: 28px;
         margin-bottom: 30px;
-        background: linear-gradient(90deg, #00e0ff, #0077ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: var(--primary-color);
       }
 
       .container input[type="text"],
       .container input[type="number"] {
-        width: 300px;
+        width: 100%;
         padding: 12px 15px;
         margin: 10px 0;
         border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        background-color: #111;
-        color: #fff;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+        color: var(--text-color-dark);
         outline: none;
         font-size: 15px;
         transition: all 0.3s ease;
       }
 
       .container input:focus {
-        border-color: #00e0ff;
-        box-shadow: 0 0 8px rgba(0, 224, 255, 0.4);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
       }
 
       /* ===== File Upload Box ===== */
       .upload-box {
         position: relative;
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
         margin: 20px auto;
         border-radius: 12px;
-        background-color: rgba(17, 17, 17, 0.8);
-        border: 2px dashed rgba(0, 224, 255, 0.4);
+        background-color: #f0f0f0;
+        border: 2px dashed var(--primary-color);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -142,10 +227,11 @@
       }
 
       .upload-box:hover {
-        background-color: rgba(17, 17, 17, 1);
-        box-shadow: 0 0 20px rgba(0, 224, 255, 0.4);
+        background-color: var(--highlight-color);
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
       }
 
+      /* Plus Icon */
       .plus-icon {
         position: relative;
         width: 40px;
@@ -158,13 +244,14 @@
         position: absolute;
         z-index: 10;
         display: none;
+        border-radius: 10px;
       }
 
       .plus-icon::before,
       .plus-icon::after {
         content: "";
         position: absolute;
-        background: linear-gradient(135deg, #00e0ff, #0077ff);
+        background-color: var(--primary-color);
         border-radius: 2px;
         transition: 0.3s;
       }
@@ -187,8 +274,8 @@
 
       .upload-box:hover .plus-icon::before,
       .upload-box:hover .plus-icon::after {
-        background: linear-gradient(135deg, #00ffa3, #0077ff);
-        box-shadow: 0 0 10px rgba(0, 255, 200, 0.4);
+        background-color: var(--primary-color);
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
       }
 
       #img {
@@ -197,9 +284,9 @@
 
       /* ===== Button ===== */
       .container button {
-        width: 300px;
+        width: 100%;
         padding: 12px;
-        background: linear-gradient(135deg, #00e0ff, #0077ff);
+        background-color: var(--secondary-color);
         border: none;
         border-radius: 8px;
         font-size: 16px;
@@ -207,12 +294,13 @@
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
+        margin-top: 20px;
       }
 
       .container button:hover {
         transform: translateY(-2px);
-        background: linear-gradient(135deg, #00ffa3, #0077ff);
-        box-shadow: 0 0 15px rgba(0, 255, 200, 0.3);
+        background-color: #218838;
+        box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
       }
     </style>
   </head>
@@ -230,25 +318,43 @@
       </nav>
     </header>
 
-    <div class="container">
-      <h2>Upload Product</h2>
-      <input id="name" type="text" placeholder="Enter product name" />
-      <input id="price" type="number" placeholder="Enter price" />
+    <div class="main-Container">
+      <div class="leftside">
+        <a href="./dasboard.html" class="">
+          <i class="fas fa-tachometer-alt"> </i>
+          <span>Dashboard</span>
+        </a>
 
-      <label for="img" class="upload-box">
-        <div class="plus-icon"></div>
-        <img class="img-render" src="" alt="" />
-      </label>
-      <input id="img" type="file" />
+        <a href="#">
+          <i class="fas fa-user"> </i>
+          <span>Muhammad Saad <span>saad@gmail.com</span></span>
+        </a>
+      </div>
 
-      <button id="add-product">Add Product</button>
+      <div class="rightside">
+        <div class="container">
+          <h2>Upload New Product</h2>
+          <input id="name" type="text" placeholder="Enter product name" />
+          <input id="price" type="number" placeholder="Enter price" />
+
+          <label for="img" class="upload-box">
+            <div class="plus-icon"></div>
+            <img class="img-render" src="" alt="" />
+          </label>
+          <input id="img" type="file" />
+
+          <button id="add-product">Add Product</button>
+        </div>
+      </div>
     </div>
 
-    <script type="module" src="../script.js"></script>
+    <!-- <script type="module" src="../script.js"></script> -->
     <script
       src="https://widget.cloudinary.com/v2.0/global/all.js"
       type="text/javascript"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script type="module" src="./owner.js"></script>
   </body>
 </html>
