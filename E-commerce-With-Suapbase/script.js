@@ -74,113 +74,123 @@ sessionfunc();
 
 // 📦 FETCH AND RENDER PRODUCTS
 async function getProducts() {
-  heroProducts = await getData();
+    // Fetch all products
+    heroProducts = await getData();
 
-  const cardHolder = document.getElementById("card-holder");
+    const cardHolder = document.getElementById("card-holder");
+    const productDetailContainer = document.getElementById("product-detail"); // Check for product detail container
 
-  // ✅ INDEX PAGE (PRODUCT CARDS)
-  if (cardHolder) {
-    cardHolder.innerHTML = ""; // Clear previous content
-
-    if (
-      window.location.href == "http://127.0.0.1:5500/Products.html" ||
-      window.location.href == "http://127.0.0.1:5500/products.html"
-    ) {
-      heroProducts.forEach((product) => {
-        cardHolder.innerHTML += `
-        <a href="Product.html?id=${product.id}">
-          <div class="card">
-            <div class="card-img">
-              <img src="${product.img}" alt="${product.name}" />
-            
-              <div class="hover-effect">
-                <div>
-                  <h1>${product.name}</h1>
-                  <p>Price: ${product.price} Rs</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>`;
-      });
-    } else {
-      heroProducts.slice(0, 4).forEach((product) => {
-        cardHolder.innerHTML += `
-        <a href="Product.html?id=${product.id}">
-          <div class="card">
-            <div class="card-img">
-              <img src="${product.img}" alt="${product.name}" />
-              <span>Best Seller</span>
-              <div class="hover-effect">
-                <div>
-                  <h1>${product.name}</h1>
-                  <p>Price: ${product.price} Rs</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>`;
-      });
+    // Check if we are on the Product Detail Page (Product.html?id=...)
+    if (productDetailContainer) {
+        individual_Product(); // Call the product detail function directly
+        return; // Stop execution here for the product page
     }
-  }
 
-  // ✅ PRODUCT DETAIL PAGE
-  if (window.location.pathname.includes("Product.html")) {
-    individual_Product();
-  }
+    // ✅ INDEX PAGE & PRODUCTS PAGE (PRODUCT CARDS)
+    if (cardHolder) {
+        cardHolder.innerHTML = ""; // Clear previous content
+
+        // Check if we are on the dedicated products listing page
+        const isProductsPage = window.location.href.includes("/products.html");
+
+        if (isProductsPage) {
+            // Render ALL products on products.html
+            heroProducts.forEach((product) => {
+                cardHolder.innerHTML += `
+                <a href="Product.html?id=${product.id}">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="${product.img}" alt="${product.name}" />
+                            <div class="hover-effect">
+                                <div>
+                                    <h1>${product.name}</h1>
+                                    <p>Price: ${product.price} Rs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>`;
+            });
+        } else {
+            // Render only the first 4 products (Hero/Index page)
+            heroProducts.slice(0, 4).forEach((product) => {
+                cardHolder.innerHTML += `
+                <a href="Product.html?id=${product.id}">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="${product.img}" alt="${product.name}" />
+                            <span>Best Seller</span>
+                            <div class="hover-effect">
+                                <div>
+                                    <h1>${product.name}</h1>
+                                    <p>Price: ${product.price} Rs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>`;
+            });
+        }
+    }
 }
 
-// 🧾 INDIVIDUAL PRODUCT DETAILS
 function individual_Product() {
-  const param = new URLSearchParams(window.location.search);
-  const id = param.get("id");
+    // Get the ID from the URL query parameters
+    const param = new URLSearchParams(window.location.search);
+    const id = param.get("id");
 
-  const product = heroProducts.find((p) => p.id == id);
-  const container = document.getElementById("product-detail");
+    // Find the product in the global list
+    const product = heroProducts.find((p) => p.id == id);
+    const container = document.getElementById("product-detail"); // This is the container on Product.html
 
-  if (container) {
-    if (product) {
-      container.innerHTML = `
-        <div class="product-image">
-          <img src="${product.img}" alt="${product.name}">
-        </div>
-        <div class="product-info">
-          <h1>${product.name}</h1>
-          <p class="price">${product.price} Rs</p>
-          <div class="action-buttons">
-            <button class="btn" id="order-btn">Order Now</button>
-            <a href="index.html" class="btn btn-outline">Back to Products</a>
-          </div>
-        </div>`;
-    } else {
-      container.innerHTML = `<p>Product not found 😢</p>`;
+    if (container) {
+        if (product) {
+            // Render product details
+            container.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.img}" alt="${product.name}">
+                </div>
+                <div class="product-info">
+                    <h1>${product.name}</h1>
+                    <p class="price">${product.price} Rs</p>
+                    <div class="action-buttons">
+                        <button class="btn" id="order-btn">Order Now</button>
+                        <a href="index.html" class="btn btn-outline">Back to Products</a>
+                    </div>
+                </div>`;
+            
+            // Attach event listener for the order button *after* it's rendered
+            const orderbtn = document.getElementById("order-btn");
+            if (orderbtn) {
+                orderbtn.addEventListener("click", handleClick);
+            }
+        } else {
+            // Product not found case
+            container.innerHTML = `<p>Product not found 😢</p>`;
+        }
     }
-  }
 
-  const orderbtn = document.getElementById("order-btn");
-  if (orderbtn) {
-    orderbtn.addEventListener("click", handleClick);
-  }
-
-  function handleClick() {
-    if (session) {
-      Swal.fire({
-        title: "Order Placed Successfully!",
-        text: "Your product will be delivered soon.",
-        icon: "success",
-        confirmButtonText: "Continue Shopping",
-        confirmButtonColor: "#764ba2",
-      });
-    } else {
-      Swal.fire({
-        title: "Not Logged in!",
-        text: "For ordering please login first.",
-        icon: "error",
-        confirmButtonText: "Close",
-        confirmButtonColor: "#764ba2",
-      });
+    // Handle click logic (defined inside to access the session/product scope if needed, 
+    // but the session is already global so it's fine here)
+    function handleClick() {
+        if (session) {
+            Swal.fire({
+                title: "Order Placed Successfully!",
+                text: "Your product will be delivered soon.",
+                icon: "success",
+                confirmButtonText: "Continue Shopping",
+                confirmButtonColor: "#764ba2",
+            });
+        } else {
+            Swal.fire({
+                title: "Not Logged in!",
+                text: "For ordering please login first.",
+                icon: "error",
+                confirmButtonText: "Close",
+                confirmButtonColor: "#764ba2",
+            });
+        }
     }
-  }
 }
 
 // 🚀 RUN APP
